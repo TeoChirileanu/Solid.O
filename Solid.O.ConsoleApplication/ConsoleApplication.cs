@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Solid.O.Libraries;
+using Solid.O.Libraries.Currencies;
 
 namespace Solid.O.ConsoleApplication {
     public static class ConsoleApplication {
