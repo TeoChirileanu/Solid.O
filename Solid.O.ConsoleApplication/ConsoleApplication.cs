@@ -6,6 +6,8 @@ using Solid.O.Libraries.DynamicCurrencyPrinters;
 
 namespace Solid.O.ConsoleApplication {
     public static class ConsoleApplication {
+        private static DynamicCurrencyPrinter _currencyPrinter;
+
         public static void Main() {
             Console.OutputEncoding = Encoding.UTF8;
             UseDynamicPolymorphism();
@@ -14,23 +16,19 @@ namespace Solid.O.ConsoleApplication {
 
         private static void UseStaticPolymorphism() {
             Console.WriteLine("Printing using static polymorphism:\n");
-
             StaticCurrencyPrinter.PrintCurrency<Euro>();
             StaticCurrencyPrinter.PrintCurrency<PoundSterling>();
-            StaticCurrencyPrinter.PrintCurrency<UnitedStatesDollar>();
+            StaticCurrencyPrinter.PrintCurrency<UsDollar>();
         }
 
         private static void UseDynamicPolymorphism() {
             Console.WriteLine("Printing using Dynamic Polymorphism\n");
-
-            DynamicCurrencyPrinter currencyPrinter = new EuroPrinter();
-            currencyPrinter.PrintCurrency();
-
-            currencyPrinter = new PoundSterlingPrinter();
-            currencyPrinter.PrintCurrency();
-
-            currencyPrinter = new UnitedStatesDollarPrinter();
-            currencyPrinter.PrintCurrency();
+            _currencyPrinter = new EuroPrinter();
+            _currencyPrinter.PrintCurrency();
+            _currencyPrinter = new PoundSterlingPrinter();
+            _currencyPrinter.PrintCurrency();
+            _currencyPrinter = new UsDollarPrinter();
+            _currencyPrinter.PrintCurrency();
         }
     }
 }
